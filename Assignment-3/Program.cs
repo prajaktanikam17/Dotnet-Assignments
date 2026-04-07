@@ -83,6 +83,12 @@ class Program
             }
         }
 
+        if (IsIdExistsInCSV(id))
+        {
+            Console.WriteLine("Student ID already exists in CSV file!");
+            return;
+        }
+
         studentId[count] = id;
 
         Console.Write("Enter Name: ");
@@ -190,9 +196,15 @@ class Program
 
     static void ExportToCSV()
     {
-        StreamWriter writer = new StreamWriter("Student.csv");
+        string filePath = @"D:\Dotnet Assignments\Assignment-3\Student.csv";
+        bool fileExists = File.Exists(filePath);
+       
+        StreamWriter writer = new StreamWriter(filePath, true);
 
-        writer.WriteLine("StudentId,Name,Age,Course");
+        if (!fileExists)
+        {
+            writer.WriteLine("StudentId,Name,Age,Course");
+        }
 
         for (int i = 0; i < count; i++)
         {
@@ -202,5 +214,34 @@ class Program
         writer.Close();
 
         Console.WriteLine("Data Exported Successfully to Student.csv");
+    }
+
+    static bool IsIdExistsInCSV(int id)
+    {
+        string filePath = @"D:\Dotnet Assignments\Assignment-3\Student.csv";
+
+        if (!File.Exists(filePath))
+        {
+            return false;
+        }
+
+        StreamReader reader = new StreamReader(filePath);
+        string line;
+
+        reader.ReadLine(); // Skip header
+
+        while ((line = reader.ReadLine()) != null)
+        {
+            string[] data = line.Split(',');
+
+            if (int.Parse(data[0]) == id)
+            {
+                reader.Close();
+                return true;
+            }
+        }
+
+        reader.Close();
+        return false;
     }
 }
