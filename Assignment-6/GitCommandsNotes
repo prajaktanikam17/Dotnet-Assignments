@@ -1,0 +1,32 @@
+1. git rebase
+Definition:
+Used to apply commits from one branch on top of another branch to maintain a clean history.
+
+Example:
+git checkout feature
+git rebase main
+
+
+2. git merge
+Definition:
+Used to combine changes from one branch into another branch.
+
+Example:
+git checkout main
+git merge feature
+
+
+3. git reset
+Definition:
+Used to undo changes by moving HEAD to a previous commit.
+
+Example:
+git reset --soft HEAD~1
+
+
+4. git restore
+Definition:
+Used to restore files to a previous state (discard changes).
+
+Example:
+git restore Program.cs
