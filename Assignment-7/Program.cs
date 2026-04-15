@@ -18,7 +18,7 @@ class Bill
     public void GenerateBill(List<Medicine> medicines)
     {
         Console.WriteLine("\n==============================================");
-        Console.WriteLine("\tABC MEDICAL STORE");
+        Console.WriteLine("\tNIKAM MEDICAL STORE");
         Console.WriteLine("==============================================");
 
         Console.WriteLine("Medicine\tRate\tQty\tAmount");
