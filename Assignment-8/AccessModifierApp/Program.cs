@@ -7,7 +7,7 @@ class Program
     {
         Demo d = new Demo();
 
-        Console.WriteLine("From Console App:");
+        Console.WriteLine("Console App:");
 
         Console.WriteLine(d.publicVar); 
 
