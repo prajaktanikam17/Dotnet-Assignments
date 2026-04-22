@@ -29,7 +29,7 @@ namespace Assignment_7
                 using (MySqlConnection conn = new MySqlConnection(connStr))
                 {
                     conn.Open();
-                    Console.WriteLine("✅ Database Connected Successfully!");
+                    Console.WriteLine("Database Connected Successfully!");
 
                     // Insert Customer
                     MySqlCommand custCmd = new MySqlCommand(
@@ -87,7 +87,7 @@ namespace Assignment_7
 
                         detailCmd.ExecuteNonQuery();
 
-                        // 🔥 Insert into Sales table
+                        // Insert into Sales table
                         MySqlCommand salesCmd = new MySqlCommand(
                             "INSERT INTO Sales(CustomerName, MedicineName, Quantity, Rate, Total) VALUES (@cname, @mname, @qty, @rate, @total)",
                             conn);
