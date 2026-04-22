@@ -1,77 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
+using MySql.Data.MySqlClient;
 
-class Medicine
+namespace Assignment_7
 {
-    public string Name { get; set; }
-    public int Rate { get; set; }
-    public int Quantity { get; set; }
-
-    public int Amount
+    class Program
     {
-        get { return Rate * Quantity; }
-    }
-}
-
-class Bill
-{
-    public void GenerateBill(List<Medicine> medicines)
-    {
-        Console.WriteLine("\n==============================================");
-        Console.WriteLine("\tNIKAM MEDICAL STORE");
-        Console.WriteLine("==============================================");
-
-        Console.WriteLine("Medicine\tRate\tQty\tAmount");
-        Console.WriteLine("----------------------------------------------");
-
-        int subtotal = 0;
-
-        foreach (var m in medicines)
+        static void Main(string[] args)
         {
-            Console.WriteLine($"{m.Name}\t{m.Rate}\t{m.Quantity}\t{m.Amount}");
-            subtotal += m.Amount;
+            string connectionString = "server=localhost;user=root;password=your_password;database=your_database;";
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    Console.WriteLine("Database connection successful!");
+
+                    // Example: Insert a new record into the database
+                    string insertQuery = "INSERT INTO your_table (column1, column2) VALUES (@value1, @value2)";
+                    using (MySqlCommand command = new MySqlCommand(insertQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@value1", "Sample Value 1");
+                        command.Parameters.AddWithValue("@value2", "Sample Value 2");
+                        int rowsAffected = command.ExecuteNonQuery();
+                        Console.WriteLine($"{rowsAffected} row(s) inserted.");
+                    }
+
+                    // Example: Retrieve records from the database
+                    string selectQuery = "SELECT * FROM your_table";
+                    using (MySqlCommand command = new MySqlCommand(selectQuery, connection))
+                    {
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Console.WriteLine($"ID: {reader["id"]}, Column1: {reader["column1"]}, Column2: {reader["column2"]}");
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred: {ex.Message}");
+                }
+            }
         }
-
-        double gst = subtotal * 0.05;
-        double total = subtotal + gst;
-
-        Console.WriteLine("----------------------------------------------");
-        Console.WriteLine($"Subtotal:\t{subtotal}");
-        Console.WriteLine($"GST (5%):\t{gst}");
-        Console.WriteLine($"Grand Total:\t{total}");
-        Console.WriteLine("==============================================");
-        Console.WriteLine("\tTHANK YOU! VISIT AGAIN");
-    }
-}
-
-class Program
-{
-    static void Main()
-    {
-        Console.Write("\nEnter number of medicines: ");
-        int n = int.Parse(Console.ReadLine());
-
-        List<Medicine> medicines = new List<Medicine>();
-
-        for (int i = 0; i < n; i++)
-        {
-            Medicine m = new Medicine();
-
-            Console.WriteLine($"\nEnter Medicine {i + 1} Details");
-
-            Console.Write("Enter Medicine Name: ");
-            m.Name = Console.ReadLine();
-
-            Console.Write("Enter Rate: ");
-            m.Rate = int.Parse(Console.ReadLine());
-
-            Console.Write("Enter Quantity: ");
-            m.Quantity = int.Parse(Console.ReadLine());
-
-            medicines.Add(m);
-        }
-
-        Bill bill = new Bill();
-        bill.GenerateBill(medicines);
     }
 }
