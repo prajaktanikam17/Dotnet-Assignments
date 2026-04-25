@@ -25,7 +25,7 @@ namespace AccessModifierLibrary
     {
         public void Display()
         {
-            Console.WriteLine("Inside Child Class:");
+            Console.WriteLine("Inside Child Class : ");
             Console.WriteLine(publicVar);
             Console.WriteLine(protectedVar);
             Console.WriteLine(protectedInternalVar);
