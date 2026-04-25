@@ -8,7 +8,7 @@ class Program
         {
             try
             {
-                Console.WriteLine("\n===== MENU DRIVEN CONSOLE APP =====");
+                Console.WriteLine("\n==== MENU DRIVEN CONSOLE APP ====");
                 Console.WriteLine("1. Even or Odd");
                 Console.WriteLine("2. Factorial");
                 Console.WriteLine("3. Prime Check");
