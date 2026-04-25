@@ -6,7 +6,7 @@ public class Program
     {
         do
         {
-            Console.WriteLine("\n-----MENU DRIVEN CONSOLE APP-----");
+            Console.WriteLine("\n---- MENU DRIVEN CONSOLE APP ----");
             Console.WriteLine("1. Character Occurrence in a String");
             Console.WriteLine("2. Reverse Each Word in a Given String");
             Console.WriteLine("3. Remove Duplicate Characters From a String");
