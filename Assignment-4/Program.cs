@@ -12,7 +12,7 @@ class Program
         {
             try
             {
-                Console.WriteLine("\n----- Student Management System -----");
+                Console.WriteLine("\n---- Student Management System ----");
                 Console.WriteLine("1. Add Student");
                 Console.WriteLine("2. View Students");
                 Console.WriteLine("3. Update Student");
