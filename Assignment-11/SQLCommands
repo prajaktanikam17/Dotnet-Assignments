@@ -1,0 +1,142 @@
+1. Store Procedure 
+Definition: 
+Procedure is block of SQL Statement or block of SQL Statement logics which is used for reusability purpose 
+means if we want to reuse procedure just we need to call it.
+Means using procedure we can reuse SQL logics more than one time.
+
+Syntax: 
+delimiter//
+create procedure ProcedureName()
+begin
+   SQL Statements;
+end//
+delimiter;
+
+Example:
+delimiter //
+create procedure GetAllMedicines()
+begin
+    select * from medicien;
+end//
+delimiter;
+
+2. Function 
+Definition: 
+A function is a database object that performs a specific operation and returns a value. 
+It can be built-in or user-defined.
+
+Syntax:
+delimiter//
+create function functionname(value int)
+returns int
+deterministic
+begin
+return value * 2;
+end//
+delimiter;
+
+Example:
+
+
+3. Difference between stored procedure and function
+
+| Stored Procedure                                                                  | Function                                                                             |
+| --------------------------------------------------------------------------------  | -----------------------------------------------------------------------------------  |
+| -A stored procedure is used to execute a set of SQL statements to perform a task. | -A function is used to perform a calculation or operation and return a single value. |
+| -It may or may not return a value.                                                | -It must always return a value.                                                      |
+| -It is called using the CALL statement.                                           | -It is called inside a SELECT statement or expression.                               |
+| -It can use IN, OUT, and INOUT parameters.                                        | -It generally uses input parameters only.                                            |
+| -It is mainly used for business logic and data operations.                        | -It is mainly used for calculations and reusable logic.                              |
+
+
+
+4. Trigger
+Definition:
+Trigger is stored program in database which execute automatically to respond specifi events such as 
+insert, update, delete, etc.
+
+types of trigger:
+
+before insert
+after insert
+before update
+after update
+before delete
+after delete
+
+syntax:
+delimiter//
+create trigger triggername
+after insert on tablename
+for each row
+begin
+sql statements;
+end//
+delimiter;
+
+Example:
+delimiter//
+create trigger trg_after_insert
+after insert on medicine
+for each row
+begin
+insert into sales(customername, medicinename, quantity, rate, total)
+values ('auto', new.name, 1, new.rate, new.rate);
+end//
+delimiter ;
+
+5. View
+Definition: 
+View is virtual table normally it is use for fetch data from two or more tables but view cannot allocate memory 
+it only fetch data and show user.
+
+Syntax:
+create view viewname as
+select column1, column2
+from tablename;
+
+Example:
+create view medicineview as
+select name, rate
+from medicine;
+
+use:
+select * from medicineview;
+
+#Difference between simple view and complex view
+
+| simple view                                            | complex view                                                |
+| -----------------------------------------------------  | ----------------------------------------------------------  |
+| -created using single table                            | -created using multiple tables                              |
+| -does not use join operation                           | -uses join operation                                        |
+| -does not use group by, aggregate functions usually    | -can use group by, having, aggregate functions              |
+| -easier to insert, update and delete data through view | -insert, update and delete may be difficult or not possible |
+| -simple query structure                                | -complex query structure                                    |
+| -used for basic data display                           | -used for reports and combined data                         |
+| -faster than complex view                              | -may be slower than simple view                             |
+| -example: customer details view                        | -example: invoice report view                               |
+
+
+6. Index
+Definition:
+An index is used to speed up data retrieval operations in a database by creating a quick lookup for columns.
+
+Syntax:
+create index StudentInfo on Student(name);
+
+Example:
+create index idx_name on table_name(column_name);
+
+#Difference between clustered index and non-clustered index
+
+| Clustered Index                              | Non-Clustered Index                            |
+| -------------------------------------------  | ---------------------------------------------  |
+| -Stores data rows physically in sorted order | -Stores index separately with pointers to data |
+| -Only one clustered index                    | -Multiple non-clustered indexes                |
+| -Faster for range searches                   | -Faster for specific lookups                   |
+| -Changes physical order of table data        | -Does not change table data order              |
+| -Usually on Primary Key                      | -Created manually on other columns             |
+
+
+
+ 
