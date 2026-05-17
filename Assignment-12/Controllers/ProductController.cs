@@ -10,14 +10,14 @@ namespace Assignment_12.Controllers
         [Route("all")]
         public IActionResult GetAll()
         {
-            return Content("Attribute Based Routing - All Products");
+            return Content("Attribute Based Routing = All Products");
         }
 
         // url: /product/details/5
         [Route("details/{id}")]
         public IActionResult Details(int id)
         {
-            return Content("Attribute Based Routing - Product Id = " + id);
+            return Content("Attribute Based Routing = Product Id = " + id);
         }
     }
 }

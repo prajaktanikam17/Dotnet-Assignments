@@ -8,13 +8,13 @@ namespace Assignment_12.Controllers
         // url: /Home/Index
         public IActionResult Index()
         {
-            return Content("Convention Based Routing - Home Index Page");
+            return Content("Convention Based Routing = Home Index Page");
         }
 
         // url: /Home/About
         public IActionResult About()
         {
-            return Content("Convention Based Routing - About Page");
+            return Content("Convention Based Routing = About Page");
         }
     }
 }
