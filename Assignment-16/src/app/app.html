@@ -1,0 +1,27 @@
+<div class="container">
+<h2>Country Wise Mobile Formatter</h2>
+
+<label>Select Country:</label>
+
+<select [(ngModel)]="country">
+  <option>India</option>
+  <option>USA</option>
+  <option>UK</option>
+  <option>Australia</option>
+</select>
+
+<br><br>
+
+<label>Enter Mobile Number:</label>
+
+<input
+  type="text"
+  [(ngModel)]="mobile"
+  [maxlength]="getMaxLength()">
+
+<br><br>
+
+<h3>Formatted Number</h3>
+
+<p>{{ mobile | countryMobile:country }}</p>
+</div>    
